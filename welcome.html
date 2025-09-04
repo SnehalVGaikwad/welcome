@@ -1,90 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Our Wall Magazine</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
-      color: #333;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-    .container {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 400px;
-    }
-    h1 {
-      font-size: 1.8em;
-      color: #2c3e50;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.1em;
-      color: #34495e;
-      margin-bottom: 20px;
-    }
-    button {
-      background-color: #3498db;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1.2em;
-      cursor: pointer;
-      border-radius: 5px;
-      width: 100%;
-    }
-    button:hover {
-      background-color: #2980b9;
-    }
-    #prompt {
-      display: none;
-      margin-top: 20px;
-      font-size: 1.1em;
-      color: #e74c3c;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Principal</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 500px;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        audio {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <audio id="welcomeAudio" autoplay>
+        <source src="welcome.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="container">
+        <h1>Welcome, Principal Sir!</h1>
+        <p>We are honored to have you here as we present our wall magazine. Your presence inspires us to strive for excellence and creativity. Thank you for your guidance and support!</p>
+    </div>
+    <script>
+        window.onload = function() {
+            var audio = document.getElementById('welcomeAudio');
+            var playPromise = audio.play();
 
-  <div class="container">
-    <h1>Welcome to Our Wall Magazine</h1>
-    <p>Celebrating Creativity and Excellence</p>
-    <button id="playButton">Play Welcome Message</button>
-    <div id="prompt">Please click the button to hear the welcome message.</div>
-  </div>
-
-  <script>
-    function speakWelcome() {
-      const msg = new SpeechSynthesisUtterance("Good morning, Principal Sir. On behalf of the entire school community, we extend a heartfelt welcome to you. Your leadership and dedication inspire us all to strive for excellence. We are honored to have you here today as we showcase our collective creativity and achievements through this wall magazine.");
-      msg.lang = "en-IN";
-      window.speechSynthesis.speak(msg);
-    }
-
-    document.getElementById('playButton').addEventListener('click', () => {
-      speakWelcome();
-      document.getElementById('prompt').style.display = 'none';
-    });
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        if (window.speechSynthesis.speaking === false) {
-          document.getElementById('prompt').style.display = 'block';
-        }
-      }, 1000);
-    });
-  </script>
-
+            if (playPromise !== undefined) {
+                playPromise.then(function() {
+                    console.log("Audio is playing");
+                }).catch(function(error) {
+                    console.log("Audio play failed:", error);
+                });
+            }
+        };
+    </script>
 </body>
 </html>
